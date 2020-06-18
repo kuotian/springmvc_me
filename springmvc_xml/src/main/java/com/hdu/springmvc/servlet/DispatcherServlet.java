@@ -20,36 +20,35 @@ import java.util.Map;
 
 public class DispatcherServlet extends AbstractHttpServlet {
 
-    private DefaultListableBeanFactory beanFactory;
-    // 处理器映射器的策略集合
-    private List<HandlerMapping> handlerMappings;
-    // 处理器适配器的策略集合
-    private List<HandlderAdapter> handlerAdapters;
+        private DefaultListableBeanFactory beanFactory;
+        // 处理器映射器的策略集合
+        private List<HandlerMapping> handlerMappings;
+        // 处理器适配器的策略集合
+        private List<HandlderAdapter> handlerAdapters;
 
-    public void init(ServletConfig config){
-        // 从web.xml中获取springmvc的配置文件路径
-        String contextConfigLocation = config.getInitParameter("contextConfigLocation");
-        // 初始化spring容器，需要提前一次性初始化bean实例
-        initSpringContainer(contextConfigLocation);
-        // 初始化策略集合
-        initHandlerMappings();
-        initHandlerAdapters();
-    }
+        public void init(ServletConfig config){
+            // 从web.xml中获取springmvc的配置文件路径
+            String contextConfigLocation = config.getInitParameter("contextConfigLocation");
+            // 初始化spring容器，需要提前一次性初始化bean实例
+            initSpringContainer(contextConfigLocation);
+            // 初始化策略集合
+            initHandlerMappings();
+            initHandlerAdapters();
+        }
 
-    private void initSpringContainer(String contextConfigLocation) {
-        beanFactory = new DefaultListableBeanFactory();
-        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
-        Resource resource = new ClassPathResource(contextConfigLocation);
-        reader.loadBeanDefinitions(resource);
-    }
-    private void initHandlerMappings() {
-        // 从spring容器中，初始化所有的HandlerMapping的策略
-        handlerMappings = new ArrayList<>(beanFactory.getBeansOfType(HandlerMapping.class).values());
-    }
-    private void initHandlerAdapters() {
-        handlerAdapters = new ArrayList<>(beanFactory.getBeansOfType(HandlderAdapter.class).values());
-    }
-
+        private void initSpringContainer(String contextConfigLocation) {
+            beanFactory = new DefaultListableBeanFactory();
+            XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
+            Resource resource = new ClassPathResource(contextConfigLocation);
+            reader.loadBeanDefinitions(resource);
+        }
+        private void initHandlerMappings() {
+            // 从spring容器中，初始化所有的HandlerMapping的策略
+            handlerMappings = new ArrayList<>(beanFactory.getBeansOfType(HandlerMapping.class).values());
+        }
+        private void initHandlerAdapters() {
+            handlerAdapters = new ArrayList<>(beanFactory.getBeansOfType(HandlderAdapter.class).values());
+        }
 
     @Override
     public void doDispatch(HttpServletRequest request, HttpServletResponse response) {
@@ -97,7 +96,6 @@ public class DispatcherServlet extends AbstractHttpServlet {
         // 如果HandlerAdapter1能处理handler，则返回HandlerAdapter1
         // 如果HandlerAdapter2能处理handler，则返回HandlerAdapter2
         // 如果HandlerAdapter3能处理handler，则返回HandlerAdapter3
-
         if (handlerAdapters != null && handlerAdapters.size() > 0) {
             for (HandlderAdapter handlderAdapter : handlerAdapters) {
                 // 判断该处理器适配器是否支持该处理器

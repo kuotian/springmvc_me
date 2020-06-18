@@ -24,9 +24,6 @@ public class RequestMappingHandlerMapping implements HandlerMapping, BeanFactory
     // uri和处理器对象的映射集合
     private Map<String, Object> mappings = new HashMap<>();
 
-    /**
-     * BeanNameUrlHandlerMapping的初始化方法
-     */
     public void init() {
         try {
             // 1.要获取所有的BeanDefinition，获取Class对象

@@ -10,7 +10,6 @@ import java.util.Map;
 //使用@Controller注解的类，就表示是一个Handler类
 @Controller
 public class UserController {
-
     // http请求：http://localhost/queryUser4?id=10&name=messi
     @RequestMapping("/queryUser4")
     @ResponseBody

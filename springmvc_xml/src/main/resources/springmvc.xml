@@ -12,16 +12,13 @@
           class="com.hdu.springmvc.handler.QueryUserHandler"></bean>
 
     <!-- 配置处理器映射器 -->
-    <bean
-            class="com.hdu.springmvc.handlermapping.BeanNameUrlHandlerMapping"
-            init-method="init"></bean>
-    <bean
-            class="com.hdu.springmvc.handlermapping.SimpleUrlHandlerMapping"
-            init-method="init"></bean>
+    <bean class="com.hdu.springmvc.handlermapping.BeanNameUrlHandlerMapping"
+          init-method="init"></bean>
+    <bean class="com.hdu.springmvc.handlermapping.SimpleUrlHandlerMapping"
+          init-method="init"></bean>
 
     <!-- 配置处理器适配器 -->
-    <bean
-            class="com.hdu.springmvc.handleradapter.HttpRequestHandlerAdapter"></bean>
+    <bean class="com.hdu.springmvc.handleradapter.HttpRequestHandlerAdapter"></bean>
 </beans>
 
 

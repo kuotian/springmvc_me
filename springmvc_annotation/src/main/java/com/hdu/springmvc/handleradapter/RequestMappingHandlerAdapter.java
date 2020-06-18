@@ -51,7 +51,6 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter {
 
             parameterList.add(value);
         }
-
         return parameterList.toArray();
     }
 
