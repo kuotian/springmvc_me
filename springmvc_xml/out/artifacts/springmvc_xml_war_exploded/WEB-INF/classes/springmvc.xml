@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 首先配置handler，交给spring容器去管理该bean -->
+    <!-- 其次配置name属性为uri，便于建立映射关系 -->
+    <bean name="/addUser2"
+          class="com.hdu.springmvc.handler.AddUserHandler"></bean>
+    <bean name="/queryUser2"
+          class="com.hdu.springmvc.handler.QueryUserHandler"></bean>
+
+    <!-- 配置处理器映射器 -->
+    <bean
+            class="com.hdu.springmvc.handlermapping.BeanNameUrlHandlerMapping"
+            init-method="init"></bean>
+    <bean
+            class="com.hdu.springmvc.handlermapping.SimpleUrlHandlerMapping"
+            init-method="init"></bean>
+
+    <!-- 配置处理器适配器 -->
+    <bean
+            class="com.hdu.springmvc.handleradapter.HttpRequestHandlerAdapter"></bean>
+</beans>
+
+
+
